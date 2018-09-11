@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Daily Performance",
+    "actual": 99.7,
+    "target":99.5,
+    "CustomerId": 1,
+    "UserId": 1,
+    "level": 0
+  },
+  {
+    "name": "Gas LP Interval",
+    "actual": 99.7,
+    "target":99.5,
+    "CustomerId": 2,
+    "UserId": 1,
+    "level": 1
+  },
+  {
+    "name": "Electric Register",
+    "actual": 99.7,
+    "target":99.5,
+    "CustomerId": 3,
+    "UserId": 1,
+    "level": 0
+  },
+  {
+    "name": "Daily Performance",
+    "actual": 99.7,
+    "target":99.5,
+    "CustomerId": 5,
+    "UserId": 1,
+    "level": 1
+  },
+  {
+    "name": "Daily Performance",
+    "actual": 99.7,
+    "target":99.5,
+    "CustomerId": 5,
+    "UserId": 1,
+    "level": 1
+  }
+]

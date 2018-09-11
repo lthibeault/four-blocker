@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Test Risk Entry",
+    "UserId": "1",
+    "CustomerId": "1",
+    "level": 0
+  },
+  {
+    "description": "Test Risk Entry 1",
+    "UserId": "1",
+    "CustomerId": "2",
+    "level": 1
+  },
+  {
+    "description": "Test Risk Entry 2",
+    "UserId": "1",
+    "CustomerId": "3",
+    "level": 1
+  }
+]

@@ -1,6 +1,24 @@
 [
   {
     "email": "larry@larry.com",
+    "password": "12345678",
+    "first":"Larry",
+    "last": "Thibeault"
+  },
+  {
+    "email": "Rohan@larry.com",
+    "password": "12345678"
+  },
+  {
+    "email": "Kapil@larry.com",
+    "password": "12345678"
+  },
+  {
+    "email": "Susan@larry.com",
+    "password": "12345678"
+  },
+  {
+    "email": "Jeff@larry.com",
     "password": "12345678"
   }
 ]

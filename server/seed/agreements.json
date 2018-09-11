@@ -1,0 +1,22 @@
+[
+  {
+    "kpi": "Daily Performance",
+    "target": 99.5,
+    "CustomerId": 1
+  },
+  {
+    "kpi": "LP Interval",
+    "target": 99.5,
+    "CustomerId": 2
+  },
+  {
+    "kpi": "Gas LP Interval",
+    "target": 99.5,
+    "CustomerId": 3
+  },
+  {
+    "kpi": "Daily Performance",
+    "target": 99.5,
+    "CustomerId": 4
+  }
+]

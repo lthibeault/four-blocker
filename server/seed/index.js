@@ -1,11 +1,15 @@
-const {sequelize, Song, User, Bookmark, History} = require('../src/models')
+const {sequelize,  User,  Accomplishment, Agreement, Customer, Milestone, Performance, Risk, Team, UserTeam} = require('../src/models')
 const Promise = require('bluebird')
-const songs = require('./songs.json')
 const users = require('./users.json')
-const bookmarks = require('./bookmarks.json')
-const histories = require('./histories.json')
+const risks = require('./risks.json')
+const performances = require('./performances.json')
+const milestones = require('./milestones.json')
+const customers = require('./customers.json')
+const agreements = require('./agreements.json')
+const teams = require('./teams.json')
+const userTeams = require('./userTeams.json')
 
-
+const accomplishments = require('./accomplishments.json')
 
  sequelize.sync({force:true})
    .then(async function () {
@@ -15,18 +19,44 @@ const histories = require('./histories.json')
        })
      )
      await Promise.all(
-       songs.map(song => {
-         Song.create(song)
+       teams.map(team => {
+         Team.create(team)
        })
      )
      await Promise.all(
-       bookmarks.map(bookmark => {
-         Bookmark.create(bookmark)
+       userTeams.map(userTeam => {
+         UserTeam.create(userTeam)
        })
      )
      await Promise.all(
-       histories.map(history => {
-         History.create(history)
+       customers.map(customer => {
+         Customer.create(customer)
+       })
+     )
+     await Promise.all(
+       risks.map(risk => {
+         Risk.create(risk)
+       })
+     )
+     await Promise.all(
+       performances.map(performance => {
+         Performance.create(performance)
+       })
+     )
+     await Promise.all(
+       milestones.map(milestone => {
+         Milestone.create(milestone)
+       })
+     )
+
+     await Promise.all(
+       agreements.map(agreement => {
+         Agreement.create(agreement)
+       })
+     )
+     await Promise.all(
+       accomplishments.map(accomplishment => {
+         Accomplishment.create(accomplishment)
        })
      )
  })

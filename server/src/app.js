@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(cors())
 require ('./routes')(app)
 
- sequelize.sync({force:false})
+ sequelize.sync()
    .then(()=>{
      app.listen(config.port)
      console.log(`Server started on port ${config.port}`)
