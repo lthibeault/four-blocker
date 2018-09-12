@@ -1,18 +1,29 @@
-const {Accomplishment} = require('../models')
-
+const {Accomplishment, Customer, User} = require('../models')
+const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     try{
       let accomplishments = null
       const search = req.query.search
         accomplishments = await Accomplishment.findAll({
-          limit: 10
-        })
+          include:[{
+            model: Customer
+          },{
+            model: User
+          }
+        ]
+        }).map(accomplishments => accomplishments.toJSON())
+           .map(accomplishments => _.extend(
+             {
+               customerName: accomplishments.Customer.name,
+               userFirst: accomplishments.User.first,
+               userLast: accomplishments.User.last
+             }, accomplishments))
       res.send(accomplishments)
     } catch(err){
       console.log(err)
       res.status(400).send({
-        error: 'An Error has occured trying to fetch the accomplishments.'
+        error: 'An Error has occured trying to fetch the accomplishments.' + err
         })
     }
   },

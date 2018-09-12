@@ -11,17 +11,12 @@ module.exports = {
 //// TODO: Add if Statement to detect either User Information, or Team Information.
 //// (Or just use to show entire Team. May need to adjust the User & JWT to include Team name)
       userTeam = await UserTeam.findAll({
-        where:{
-            TeamId: UserId
-        },
-        include:[{
-          model: Team
-        },{
-          model: User
-        }
+        where:{TeamId: UserId},
+        include:[
+          {model: Team},
+          {model: User}
       ]
-     })
-     .map(userTeam => userTeam.toJSON())
+     }).map(userTeam => userTeam.toJSON())
         .map(userTeam => _.extend(
           {
             teamName: userTeam.Team.name
