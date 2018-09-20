@@ -3,22 +3,49 @@
     "email": "larry@larry.com",
     "password": "12345678",
     "first":"Larry",
-    "last": "Thibeault"
+    "last": "Thibeault",
+    "TeamId":1,
+    "RoleId": 3,
+    "nextLevel":4,
+    "id": 1
   },
   {
     "email": "Rohan@larry.com",
-    "password": "12345678"
+    "password": "12345678",
+    "first":"Rohan",
+    "last": "Sangle",
+    "TeamId": 1,
+    "RoleId": 1,
+    "nextLevel":3,
+    "id": 2
   },
   {
     "email": "Kapil@larry.com",
-    "password": "12345678"
+    "password": "12345678",
+    "first":"Kapil",
+    "last": "Yadav",
+    "TeamId": 2,
+    "RoleId": 2,
+    "nextLevel":4,
+    "id": 3
   },
   {
     "email": "Susan@larry.com",
-    "password": "12345678"
+    "password": "12345678",
+    "first":"Sue",
+    "last": "Neumann",
+    "TeamId": 3,
+    "RoleId": 4,
+    "reportTo": 5,
+    "id": 4
   },
   {
     "email": "Jeff@larry.com",
-    "password": "12345678"
+    "password": "12345678",
+    "first":"Jeff",
+    "last": "Fanning",
+    "TeamId": 4,
+    "RoleId": 5,
+    "id": 5
   }
 ]

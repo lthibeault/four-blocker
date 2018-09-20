@@ -2,8 +2,6 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Performance = sequelize.define('Performance', {
-    name: DataTypes.STRING,
-    target: DataTypes.FLOAT,
     actual: DataTypes.FLOAT,
     level: DataTypes.INTEGER
     })
@@ -11,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     Performance.associate = function (models) {
       Performance.belongsTo(models.User)
       Performance.belongsTo(models.Customer)
+      Performance.belongsTo(models.Agreement)
+      Performance.belongsTo(models.Report)
     }
 
   return Performance

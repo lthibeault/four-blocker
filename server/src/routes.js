@@ -11,7 +11,8 @@ const TeamsController = require('./controllers/TeamsController')
 const BookmarksController = require('./controllers/BookmarksController')
 const HistoriesController = require('./controllers/HistoriesController')
 const isAuthenticated = require('./policies/isAuthenticated')
-
+const ReportsController = require('./controllers/ReportsController')
+const UsersController = require('./controllers/UsersController')
 
 module.exports = (app) => {
   //Start Register Route
@@ -24,53 +25,60 @@ module.exports = (app) => {
   app.post('/login', AuthenticationController.login)
   //end Login Route
 
-  //Start Songs Routes
-  app.get('/songs', SongsController.index)
-  app.get('/songs/:songId', SongsController.show)
-  app.post('/songs', SongsController.post)
-  app.put('/songs/:songId', SongsController.put)
-  //end Songs Routes
-
   //Start Accomplishments Routes
-  app.get('/accomplishments', AccomplishmentsController.index)
-  app.get('/accomplishments/:accomplishmentId', AccomplishmentsController.show)
-  app.post('/accomplishments', AccomplishmentsController.post)
-  app.put('/accomplishments/:accomplishmentId', AccomplishmentsController.put)
+  app.get('/accomplishments', isAuthenticated, AccomplishmentsController.index)
+  app.get('/accomplishments/:accomplishmentId', isAuthenticated, AccomplishmentsController.show)
+  app.post('/accomplishments', isAuthenticated, AccomplishmentsController.post)
+  app.put('/accomplishments/:accomplishmentId', isAuthenticated,  AccomplishmentsController.put)
+  app.put('/accomplishments/', isAuthenticated,  AccomplishmentsController.put)
+  app.delete('/accomplishments/:accomplishmentId', /*isAuthenticated,*/ AccomplishmentsController.delete)
   //end Accomplishments Routes
 
+  //Start Reports Routes
+  app.get('/reports', isAuthenticated, ReportsController.index)
+  app.get('/reports/:accomplishmentId', ReportsController.show)
+  app.post('/reports', ReportsController.post)
+  app.put('/reports/:reportsId', ReportsController.put)
+  //end Reports Routes
+
   //Start agreements Routes
-  app.get('/agreements', AgreementsController.index)
-  app.get('/agreements/:agreementId', AgreementsController.show)
+  app.get('/agreements/:agreementId', AgreementsController.index)
+  //app.get('/agreements/:agreementId', AgreementsController.show)
   app.post('/agreements', AgreementsController.post)
   app.put('/agreements/:agreementId', AgreementsController.put)
   //end agreements Routes
 
   //Start customers Routes
-  app.get('/customers', CustomersController.index)
-  app.get('/customers/:customerstId', CustomersController.show)
+  app.get('/customers', isAuthenticated, CustomersController.index)
+  app.get('/customers/:userId', CustomersController.show)
   app.post('/customers', CustomersController.post)
   app.put('/customers/:customerId', CustomersController.put)
   //end customers Routes
 
   //Start milestones Routes
-  app.get('/milestones', MilestonesController.index)
-  app.get('/milestones/:milestoneId', MilestonesController.show)
-  app.post('/milestones', MilestonesController.post)
+  app.get('/milestones', isAuthenticated, MilestonesController.index)
+  app.get('/milestones/:milestoneId', isAuthenticated, MilestonesController.show)
+  app.post('/milestones', isAuthenticated, MilestonesController.post)
   app.put('/milestones/:milestoneId', MilestonesController.put)
+  app.delete('/milestones/:milestoneId', /*isAuthenticated,*/ MilestonesController.delete)
   //end milestones Routes
 
   //Start performances Routes
-  app.get('/performances', PerformancesController.index)
-  app.get('/performances/:performanceId', PerformancesController.show)
-  app.post('/performances', PerformancesController.post)
-  app.put('/performances/:performanceId', PerformancesController.put)
+  app.get('/performances', isAuthenticated, PerformancesController.index)
+  app.get('/performances/:performanceId', isAuthenticated, PerformancesController.show)
+  app.post('/performances', isAuthenticated, PerformancesController.post)
+  app.put('/performances/:performanceId', isAuthenticated, PerformancesController.put)
+  app.put('/performances/', isAuthenticated, PerformancesController.put)
+
+  app.delete('/performances/:performanceId', /*isAuthenticated,*/ PerformancesController.delete)
   //end performances Routes
 
   //Start risks Routes
-  app.get('/risks', RisksController.index)
-  app.get('/risks/:riskId', RisksController.show)
-  app.post('/risks', RisksController.post)
-  app.put('/risks/:riskId', RisksController.put)
+  app.get('/risks', isAuthenticated, RisksController.index)
+  app.get('/risks/:riskId', isAuthenticated, RisksController.show)
+  app.post('/risks', isAuthenticated, RisksController.post)
+  app.put('/risks/:riskId', isAuthenticated, RisksController.put)
+  app.delete('/risks/:riskId', /*isAuthenticated,*/ RisksController.delete)
   //end risks Routes
 
   //Start teams Routes
@@ -78,19 +86,13 @@ module.exports = (app) => {
   app.get('/teams/:teamId', TeamsController.show)
   app.post('/teams', TeamsController.post)
   app.put('/teams/:teamId', TeamsController.put)
-  app.get('/teams/users/:userId', TeamsController.users)
+  //app.get('/teams/users/:userId', TeamsController.users)
   //end teams Routes
 
-
-//Start Bookmark Routes
-  app.get('/bookmarks', /*isAuthenticated,*/ BookmarksController.index)
-  app.post('/bookmarks', /*isAuthenticated,*/ BookmarksController.post)
-  app.delete('/bookmarks/:bookmarkId', /*isAuthenticated,*/ BookmarksController.delete)
-//End Bookmark Routes
-
-//Start History Routes
-  app.get('/histories', /*isAuthenticated,*/ HistoriesController.index)
-  app.post('/histories', /*isAuthenticated,*/ HistoriesController.post)
-//End History Routes
-
+    //Start users Routes
+    app.get('/users', UsersController.index)
+    app.get('/users/:userId', UsersController.show)
+    app.post('/users', UsersController.post)
+    app.put('/users/:userId', UsersController.put)
+    //end teams Routes
 }

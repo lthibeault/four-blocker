@@ -4,20 +4,23 @@
     "target": "October 2018",
     "UserId": "1",
     "CustomerId": "1",
-    "level": 1
+    "level": 1,
+    "ReportId": 1
   },
   {
     "description": "Test Entry 1",
     "target": "November 2018",
     "UserId": "1",
     "CustomerId": "2",
-    "level": 0
+    "level": 0,
+    "ReportId": 2
   },
   {
     "description": "Test Entry 2",
     "target": "October 2019",
     "UserId": "1",
     "CustomerId": "3",
-    "level": 1
+    "level": 1,
+    "ReportId": 2
   }
 ]

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     Milestone.associate = function (models) {
       Milestone.belongsTo(models.User)
       Milestone.belongsTo(models.Customer)
+      Milestone.belongsTo(models.Report)
     }
 
 

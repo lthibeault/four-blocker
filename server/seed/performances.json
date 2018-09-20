@@ -1,42 +1,66 @@
 [
   {
-    "name": "Daily Performance",
     "actual": 99.7,
-    "target":99.5,
     "CustomerId": 1,
     "UserId": 1,
-    "level": 0
+    "level": 0,
+    "AgreementId": 1,
+    "ReportId": 1
   },
   {
-    "name": "Gas LP Interval",
     "actual": 99.7,
-    "target":99.5,
+    "CustomerId": 1,
+    "UserId": 2,
+    "level": 0,
+    "AgreementId": 1,
+    "ReportId": 4
+  },
+  {
+    "actual": 99.7,
+    "CustomerId": 2,
+    "UserId": 2,
+    "level": 0,
+    "AgreementId": 1,
+    "ReportId": 4
+  },
+  {
+    "actual": 99.7,
+    "CustomerId": 1,
+    "UserId": 1,
+    "level": 0,
+    "AgreementId": 1,
+    "ReportId": 4
+  },
+  {
+    "actual": 99.7,
+    "CustomerId": 1,
+    "UserId": 1,
+    "level": 0,
+    "AgreementId": 2,
+    "ReportId": 3
+  },
+  {
+    "actual": 99.7,
     "CustomerId": 2,
     "UserId": 1,
-    "level": 1
+    "level": 0,
+    "AgreementId": 1,
+    "ReportId": 4
   },
   {
-    "name": "Electric Register",
     "actual": 99.7,
-    "target":99.5,
+    "CustomerId": 2,
+    "UserId": 1,
+    "level": 0,
+    "AgreementId": 3,
+    "ReportId": 4
+  },
+  {
+    "actual": 99.7,
     "CustomerId": 3,
     "UserId": 1,
-    "level": 0
-  },
-  {
-    "name": "Daily Performance",
-    "actual": 99.7,
-    "target":99.5,
-    "CustomerId": 5,
-    "UserId": 1,
-    "level": 1
-  },
-  {
-    "name": "Daily Performance",
-    "actual": 99.7,
-    "target":99.5,
-    "CustomerId": 5,
-    "UserId": 1,
-    "level": 1
+    "level": 0,
+    "AgreementId": 2,
+    "ReportId": 4
   }
 ]

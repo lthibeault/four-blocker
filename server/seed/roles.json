@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Team Member",
+    "id": 1
+  },
+  {
+    "name": "Team Lead",
+    "id": 2
+  },
+  {
+    "name": "Supervisor",
+    "id": 3
+  },
+  {
+    "name": "Manager",
+    "id": 4
+  },
+  {
+    "name": "Director",
+    "id": 5
+  }
+]

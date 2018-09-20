@@ -3,18 +3,42 @@
     "description": "Test Risk Entry",
     "UserId": "1",
     "CustomerId": "1",
-    "level": 0
+    "level": 0,
+    "ReportId": 3
   },
   {
     "description": "Test Risk Entry 1",
     "UserId": "1",
     "CustomerId": "2",
-    "level": 1
+    "level": 1,
+    "ReportId": 4
   },
   {
     "description": "Test Risk Entry 2",
     "UserId": "1",
     "CustomerId": "3",
-    "level": 1
+    "level": 1,
+    "ReportId": 4
+  },
+  {
+    "description": "Test Risk Entry",
+    "UserId": "2",
+    "CustomerId": "1",
+    "level": 0,
+    "ReportId": 1
+  },
+  {
+    "description": "Test Risk Entry 1",
+    "UserId": "2",
+    "CustomerId": "2",
+    "level": 1,
+    "ReportId": 2
+  },
+  {
+    "description": "Test Risk Entry 2",
+    "UserId": "2",
+    "CustomerId": "3",
+    "level": 1,
+    "ReportId": 2
   }
 ]

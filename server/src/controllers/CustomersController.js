@@ -29,7 +29,8 @@ module.exports = {
   },
   async show (req, res) {
     try{
-      const customers = await Customer.findById(req.params.customerId)
+      // const customers = await Customer.findById(req.params.userId)
+      const customers = await Customer.findAll()
       res.send(customers)
     } catch(err){
       res.status(400).send({

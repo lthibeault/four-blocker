@@ -1,15 +1,19 @@
-const {Accomplishment, Customer, User} = require('../models')
+const {Accomplishment, Customer, User, Report} = require('../models')
 const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     try{
       let accomplishments = null
-      const search = req.query.search
+      const UserId = req.user.id
         accomplishments = await Accomplishment.findAll({
           include:[{
             model: Customer
           },{
-            model: User
+            model: User,
+            where: { id: UserId}
+          },{
+            model:Report,
+            where: { status: "Active" }
           }
         ]
         }).map(accomplishments => accomplishments.toJSON())
@@ -30,11 +34,12 @@ module.exports = {
   async post (req, res) {
     console.log('Trying to add the Accomplishment')
     try {
+      req.body.UserId = req.user.id
       const accomplishment = await Accomplishment.create(req.body)
       res.send(accomplishment)
     } catch(err){
       res.status(400).send({
-        error: 'An Error has occured trying to create the accomplishment.'
+        error: 'An Error has occured trying to create the accomplishment.' + err
         })
     }
   },
@@ -61,5 +66,29 @@ module.exports = {
         error: 'An Error has occured trying to Update the accomplishments.'
         })
     }
-  }
+  },
+  async delete (req, res) {
+    try{
+      //const UserId = req.user.id
+      const {accomplishmentId} = req.params
+
+      const accomplishment = await Accomplishment.findOne({
+        where: {
+          id: accomplishmentId
+        }
+      })
+      if (!accomplishment){
+        return res.status(403).send({
+
+          error: 'You do not have access to this accomplishment'
+        })
+      }
+      await accomplishment.destroy()
+      res.send(accomplishment)
+    } catch(err){
+      res.status(400).send({
+        error: 'An Error has occured trying to delete the accomplishment.' + err
+        })
+    }
+   }
 }

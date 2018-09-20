@@ -4,15 +4,17 @@ module.exports = {
   async index (req, res) {
     try{
       let agreements = null
-      const search = req.query.search
+      const search = req.params.agreementId
         agreements = await Agreement.findAll({
-          limit: 10
+          where:{
+            CustomerId : search
+          }
         })
       res.send(agreements)
     } catch(err){
       console.log(err)
       res.status(400).send({
-        error: 'An Error has occured trying to fetch the agreements.'
+        error: 'An Error has occured trying to fetch the agreements.' + err
         })
     }
   },
@@ -29,7 +31,9 @@ module.exports = {
   },
   async show (req, res) {
     try{
-      const agreements = await Agreement.findById(req.params.agreementId)
+      console.log('*********Body***********')
+      console.log(req.params.agreementId)
+      const agreements = await Agreement.findByAll(req.params.agreementId)
       res.send(agreements)
     } catch(err){
       res.status(400).send({
