@@ -10,24 +10,14 @@
         >
           <template slot="items" slot-scope="props">
             <td>{{ props.item.first }} {{ props.item.last }}</td>
-            <td class="text-xs">{{ props.item.name }}</td>
             <td class="text-xs">{{ props.item.role }}</td>
-            <td class="text-xs">{{ props.item.nextLevel }}</td>
-
+            <td class="text-xs">{{ props.item.Team.name }}</td>
             <td class="justify-center layout px-0">
-              <v-icon
+              <v-btn flat   :to="{ name: 'manageUser', params:{ userId: props.item.id }}"><v-icon
                 small
-                class="mr-2"
-                @click="editItem(props.item)"
-              >
-                edit
-              </v-icon>
-              <v-icon
-                small
-                @click="deleteItem(props.item)"
-              >
-                delete
-              </v-icon>
+                class="mr-2">
+                  edit
+              </v-icon></v-btn>
             </td>
           </template>
           <template slot="no-data">
@@ -36,7 +26,31 @@
         </v-data-table>
       </panel>
       <panel title="Teams">
-
+        <v-data-table
+          :headers="teamHeaders"
+          :items="teams"
+          hide-actions
+          class="elevation-1"
+        >
+          <template slot="items" slot-scope="props">
+            <td class="text-xs">{{ props.item.name }}</td>
+            <td class="justify-center layout px-0">
+              <v-btn
+                flat
+                :to="{ name: 'manageUser', params:{ userId: props.item.id }}"
+                >
+                <v-icon
+                  small
+                  class="mr-2">
+                    edit
+              </v-icon>
+            </v-btn>
+            </td>
+          </template>
+          <template slot="no-data">
+            <v-btn color="primary" @click="initialize">Reset</v-btn>
+          </template>
+        </v-data-table>
       </panel>
     </panel>
   </div>
@@ -45,6 +59,8 @@
 <script>
 import {mapState} from 'vuex'
 import UserService from '@/services/UserService'
+import TeamsService from '@/services/TeamsService'
+
 export default {
   components: {
   },
@@ -56,21 +72,28 @@ export default {
   methods: {
     async initialize () {
       this.users = (await UserService.index()).data
+      this.teams = (await TeamsService.index()).data
     }
   },
   data () {
     return {
       users: [],
+      teams: [],
       dialog: false,
       mySupervisor: null,
-      objArray: [
-        { id: 0, name: 'Object 0', otherProp: '321' },
-        { id: 1, name: 'O1', otherProp: '648' },
-        { id: 2, name: 'Another Object', otherProp: '850' },
-        { id: 3, name: 'Almost There', otherProp: '046' },
-        { id: 4, name: 'Last Obj', otherProp: '984' }
+      reportsTo: null,
+      teamHeaders: [
+        {
+          text: 'Name',
+          align: 'left',
+          sortable: false,
+          value: 'name'
+        },
+        { text: 'Role', value: 'role' },
+        { text: 'edit', value: 'edit' }
       ],
       headers: [
+
         {
           text: 'Name',
           align: 'left',
@@ -79,9 +102,8 @@ export default {
         },
         { text: 'Role', value: 'role' },
         { text: 'Title', value: 'title' },
-        { text: 'Next Level', value: 'reportTo' }
+        { text: 'edit', value: 'edit' }
       ],
-      desserts: [],
       editedIndex: -1,
       editedItem: {
         name: '',
@@ -101,7 +123,7 @@ export default {
   },
   created () {
     this.initialize()
-    this.getReporter()
+    // this.getReporter()
   }
 }
 </script>

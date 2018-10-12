@@ -1,4 +1,4 @@
-const {Accomplishment, Customer, User, Report} = require('../models')
+const {Accomplishment, Customer, User, Report, Reporter} = require('../models')
 const _ = require('lodash')
 module.exports = {
   async index (req, res) {
@@ -31,6 +31,7 @@ module.exports = {
         })
     }
   },
+  
   async post (req, res) {
     console.log('Trying to add the Accomplishment')
     try {

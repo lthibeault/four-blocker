@@ -1,16 +1,19 @@
 import Api from '@/services/Api'
 
 export default {
-  index () {
-    return Api().get('accomplishments')
+  index (pageId) {
+    return Api().get(`blocks/${pageId}`)
   },
-  show (songID) {
-    return Api().get(`songs/${songID}`)
+  reportee (pageId) {
+    return Api().get(`reportee/${pageId}`)
   },
-  post (song) {
-    return Api().post('songs', song)
+  link (item) {
+    return Api().post('link', item)
   },
-  put (song) {
-    return Api().put(`songs/${song.id}`, song)
+  post (newEntry) {
+    return Api().post('blocks', newEntry)
+  },
+  delete (blockId) {
+    return Api().delete(`blocks/${blockId}`)
   }
 }

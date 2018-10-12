@@ -1,0 +1,18 @@
+[
+  {
+    "reporter": 1,
+    "UserId": 2
+  },
+  {
+    "reporter": 4,
+    "UserId": 1
+  },
+  {
+    "reporter": 4,
+    "UserId": 3
+  },
+  {
+    "reporter": 5,
+    "UserId": 4
+  }
+]

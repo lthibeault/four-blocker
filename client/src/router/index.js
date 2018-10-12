@@ -4,16 +4,19 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import HelloWorld from '@/components/HelloWorld'
 import PreviewPanel from '@/components/Blocks/PreviewPanel'
-import PerformancePanel from '@/components/Blocks/PerformancePanel'
-import AccomplishmentPanel from '@/components/Blocks/AccomplishmentPanel'
-import MilestonePanel from '@/components/Blocks/MilestonePanel'
-import RiskPanel from '@/components/Blocks/RiskPanel'
-import Admin from '@/components/Admin'
-
+import BlockPanel from '@/components/Blocks/BlockPanel'
+import Admin from '@/components/Admin/Admin'
+import Profile from '@/components/Profile/Profile'
+import User from '@/components/Admin/User'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
+    },
     {
       path: '/register',
       name: 'register',
@@ -25,53 +28,29 @@ export default new Router({
       component: Login
     },
     {
-      path: '/kpi',
-      name: 'kpi',
-      component: PerformancePanel
-    },
-    {
-      path: '/accomplishment',
-      name: 'accomplishment',
-      component: AccomplishmentPanel
-    },
-    {
-      path: '/risk',
-      name: 'risk',
-      component: RiskPanel
-    },
-    {
-      path: '/milestone',
-      name: 'milestone',
-      component: MilestonePanel
+      path: '/blocks/:blockName',
+      name: 'blocks',
+      component: BlockPanel,
+      props: true
     },
     {
       path: '/preview',
-      name: 'preview',
+      name: '/preview',
       component: PreviewPanel
     },
     {
       path: '/admin',
-      name: 'admin',
+      name: '/admin',
       component: Admin
     },
-    // {
-    //   path: '/songs/create',
-    //   name: 'songs-create',
-    //   component: CreateSongs
-    // },
-    // {
-    //   path: '/song/:songID',
-    //   name: 'song',
-    //   component: ViewSong
-    // },
-    // {
-    //   path: '/song/:songID/edit',
-    //   name: 'song-edit',
-    //   component: EditSong
-    // },
+    {
+      path: '/user/:userId',
+      name: '/manageUser',
+      component: User
+    },
     {
       path: '/',
-      name: 'root',
+      name: '/home',
       component: HelloWorld
     },
     {

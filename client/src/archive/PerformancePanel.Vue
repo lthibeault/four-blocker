@@ -70,6 +70,8 @@
 
 <script>
 import PerformancesService from '@/services/PerformancesService'
+import BlocksService from '@/services/BlocksService'
+
 import CustomersService from '@/services/CustomersService'
 import AgreementsService from '@/services/AgreementsService'
 import {mapState} from 'vuex'
@@ -121,7 +123,7 @@ export default {
       this.close()
     },
     async initialize () {
-      this.performances = (await PerformancesService.index()).data
+      this.performances = (await BlocksService.index(1)).data
       this.customers = (await CustomersService.show(this.user.id)).data
     },
     async deleteItem (item) {

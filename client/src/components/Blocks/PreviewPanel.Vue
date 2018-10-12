@@ -10,11 +10,11 @@
         </v-toolbar>
         <v-data-table dark :headers="performanceHeaders" :items="performances" item-key="performanceId" class="elevation-1" text-center>
           <template slot="items" slot-scope="props">
-            <td>{{ props.item.customerName }}</td>
-            <td class="text-xs-center">{{ props.item.kpi }}</td>
-            <td class="text-xs-center">{{ props.item.target }}</td>
-            <td class="text-xs-center">{{ props.item.actual }}</td>
-            <td class="text-xs-center">{{ props.item.userFirst }} {{ props.item.userLast }}</td>
+            <td>{{ props.item.Customer.name }}</td>
+            <td class="text-xs-center">{{ props.item.Agreement.kpi }}</td>
+            <td class="text-xs-center">{{ props.item.Agreement.target }}</td>
+            <td class="text-xs-center">{{ props.item.Block.entry }}</td>
+            <td class="text-xs-center">{{ props.item.Block.User.first }} {{ props.item.Block.User.last }}</td>
           </template>
         </v-data-table>
         </v-flex>
@@ -32,9 +32,9 @@
               class="elevation-1"
             >
             <template slot="items" slot-scope="props">
-              <td>{{ props.item.customerName }}</td>
-              <td class="text-xs">{{ props.item.description }}</td>
-              <td class="text-xs">{{ props.item.userFirst }} {{ props.item.userLast }}</td>
+              <td>{{ props.item.Customer.name }}</td>
+              <td class="text-xs">{{ props.item.Block.entry }}</td>
+              <td class="text-xs">{{ props.item.Block.User.first }} {{ props.item.Block.User.last }}</td>
             </template>
           </v-data-table>
         </v-flex>
@@ -52,10 +52,10 @@
             class="elevation-1"
           >
             <template slot="items" slot-scope="props">
-              <td>{{ props.item.customerName }}</td>
-              <td class="text-xs">{{ props.item.target }}</td>
-              <td class="text-xs">{{ props.item.description }}</td>
-              <td class="text-xs">{{ props.item.userFirst }} {{ props.item.userLast }}</td>
+              <td>{{ props.item.Customer.name }}</td>
+              <td class="text-xs">{{ props.item.Block.target }}</td>
+              <td class="text-xs">{{ props.item.Block.entry }}</td>
+              <td class="text-xs">{{ props.item.Block.User.first }} {{ props.item.Block.User.last }}</td>
             </template>
           </v-data-table>
         </v-flex>
@@ -74,10 +74,9 @@
               class="elevation-1"
             >
               <template slot="items" slot-scope="props">
-                <td>{{ props.item.customerName }}</td>
-                <td class="text-xs">{{ props.item.target }}</td>
-                <td class="text-xs">{{ props.item.description }}</td>
-                <td class="text-xs">{{ props.item.userFirst }} {{ props.item.userLast }}</td>
+                <td>{{ props.item.Customer.name }}</td>
+                <td class="text-xs">{{ props.item.Block.entry }}</td>
+                <td class="text-xs">{{ props.item.Block.User.first }} {{ props.item.Block.User.last }}</td>
               </template>
             </v-data-table>
           </div>
@@ -87,10 +86,7 @@
 </template>
 
 <script>
-import PerformancesService from '@/services/PerformancesService'
-import RisksService from '@/services/RisksService'
-import MilestonesService from '@/services/MilestonesService'
-import AccomplishmentsService from '@/services/AccomplishmentsService'
+import BlocksService from '@/services/BlocksService'
 import ReportsService from '@/services/ReportsService'
 
 import {mapState} from 'vuex'
@@ -110,17 +106,20 @@ export default {
     async sendReport () {
       console.log(this.report)
       this.next()
-
       this.newReport = (await ReportsService.put(this.report)).data
       console.log(this.newReport)
       this.$store.dispatch('setReport', this.newReport)
+      this.getCurrentInfo()
+    },
+    async getCurrentInfo () {
+      this.performances = (await BlocksService.index('KPI')).data
+      this.accomplishments = (await BlocksService.index('Accomplishments')).data
+      this.risks = (await BlocksService.index('Risks')).data
+      this.milestones = (await BlocksService.index('Milestones')).data
     }
   },
   async mounted () {
-    this.performances = (await PerformancesService.index()).data
-    this.accomplishments = (await AccomplishmentsService.index()).data
-    this.risks = (await RisksService.index()).data
-    this.milestones = (await MilestonesService.index()).data
+    this.getCurrentInfo()
   },
 
   data () {

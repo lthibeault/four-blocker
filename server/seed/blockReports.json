@@ -1,0 +1,90 @@
+[
+  {
+    "BlockId": 1,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 1,
+    "AgreementId": null,
+    "BlockTypeId": 4
+  },
+  {
+    "BlockId": 2,
+    "ReportId": 3,
+    "UserId": 2,
+    "CustomerId": 1,
+    "AgreementId": null,
+    "BlockTypeId": 4
+  },
+  {
+    "BlockId": 3,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 1,
+    "AgreementId": null,
+    "BlockTypeId": 2
+  },
+  {
+    "BlockId": 4,
+    "ReportId": 3,
+    "UserId": 2,
+    "CustomerId": 2,
+    "AgreementId": null,
+    "BlockTypeId": 2
+  },
+  {
+    "BlockId": 5,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 2,
+    "AgreementId": null,
+    "BlockTypeId": 3
+  },
+  {
+    "BlockId": 6,
+    "ReportId": 3,
+    "UserId": 2,
+    "CustomerId": 3,
+    "AgreementId": null,
+    "BlockTypeId": 3
+  },
+  {
+    "BlockId": 7,
+    "ReportId": 3,
+    "UserId": 2,
+    "CustomerId": 2,
+    "AgreementId": null,
+    "BlockTypeId": 2
+  },
+  {
+    "BlockId": 8,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 2,
+    "AgreementId": null,
+    "BlockTypeId": 3
+  },
+  {
+    "BlockId": 9,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 1,
+    "AgreementId": 1,
+    "BlockTypeId": 1
+  },
+  {
+    "BlockId": 10,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 1,
+    "AgreementId": 1,
+    "BlockTypeId": 3
+  },
+  {
+    "BlockId": 11,
+    "ReportId": 1,
+    "UserId": 2,
+    "CustomerId": 1,
+    "AgreementId": 1,
+    "BlockTypeId": 1
+  }
+]

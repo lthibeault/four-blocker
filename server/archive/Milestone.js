@@ -9,7 +9,5 @@ module.exports = (sequelize, DataTypes) => {
       Milestone.belongsTo(models.Customer)
       Milestone.belongsTo(models.Report)
     }
-
-
   return Milestone
 }

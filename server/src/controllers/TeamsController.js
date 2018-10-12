@@ -32,9 +32,7 @@ module.exports = {
   async index (req, res) {
     try{
       let teams = null
-      const search = req.query.search
         teams = await Team.findAll({
-          limit: 10
         })
       res.send(teams)
     } catch(err){

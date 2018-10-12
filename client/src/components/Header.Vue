@@ -1,10 +1,10 @@
 <template>
 <v-layout>
-  <v-toolbar fixed class="cyan" dark>
+  <v-toolbar fixed class="blue" dark>
     <v-toolbar-title class="mr-4">
       <v-container>
         <v-layout justify-center>
-          <v-btn v-if="$store.state.isUserLoggedIn" color="pink" dark @click.stop="drawer = !drawer">
+          <v-btn v-if="$store.state.isUserLoggedIn" color="light-green" dark @click.stop="drawer = !drawer">
             <v-icon>menu</v-icon>
           </v-btn>
         </v-layout>
@@ -26,16 +26,13 @@
     <v-navigation-drawer v-model="drawer" absolute temporary v-if="$store.state.isUserLoggedIn">
       <v-list class="pa-1">
         <v-list-tile avatar>
-          <!-- <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg">
-          </v-list-tile-avatar> -->
           <v-list-tile-content>
             <v-list-tile-title>{{user.first}} {{user.last}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
       <v-list>
-        <v-list-tile to="root">
+        <v-list-tile to="/home">
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -57,7 +54,25 @@
           <v-list-tile slot="activator">
             <v-list-tile-title>Blocks</v-list-tile-title>
           </v-list-tile>
-          <v-list-tile v-for="(item, i) in items" :key="i" :to="item.name">
+          <v-list-tile
+            v-for="(item, i) in items"
+            :key="i"
+            :to="item.name">
+            <v-list-tile-title v-text="item.title">
+            </v-list-tile-title>
+            <v-list-tile-action>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </v-list-group>
+        <v-list-group prepend-icon="dashboard" value="true">
+          <v-list-tile slot="activator">
+            <v-list-tile-title>Review/Submit</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile
+            v-for="(item, i) in otherItems"
+            :key="i"
+            :to="item.name">
             <v-list-tile-title v-text="item.title">
             </v-list-tile-title>
             <v-list-tile-action>
@@ -85,8 +100,9 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
+      this.$store.dispatch('setReport', null)
       this.$router.push({
-        name: 'root'
+        name: '/home'
       })
     }
   },
@@ -95,49 +111,52 @@ export default {
       admins: [{
         title: 'Profile',
         icon: 'face',
-        name: 'profile'
+        name: '/profile'
       },
       {
         title: 'Settings',
         icon: 'settings',
-        name: 'settings'
+        name: '/settings'
       },
       {
         title: 'Admin',
         icon: 'build',
-        name: 'admin'
+        name: '/admin'
       }],
       drawer: null,
       items: [{
         title: 'KPI',
         icon: 'dashboard',
-        name: 'kpi'
+        name: '/blocks/KPI'
       },
       {
         title: 'Accomplishment',
         icon: 'dashboard',
-        name: 'accomplishment'
+        name: '/blocks/Accomplishments'
       },
       {
         title: 'Milestone',
         icon: 'dashboard',
-        name: 'milestone'
+        name: '/blocks/Milestones'
       },
       {
         title: 'Risk',
         icon: 'dashboard',
-        name: 'risk'
-      },
-      {
-        title: 'Preview/Send',
-        icon: 'send',
-        name: 'preview'
-      },
-      {
-        title: 'History',
-        icon: 'history',
-        name: 'history'
-      }]
+        name: '/blocks/Risks'
+      }
+      ],
+      otherItems: [
+        {
+          title: 'Preview/Send',
+          icon: 'send',
+          name: '/preview'
+        },
+        {
+          title: 'History',
+          icon: 'history',
+          name: '/history'
+        }
+      ]
     }
   }
 }

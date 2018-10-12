@@ -1,6 +1,4 @@
-const {Report} = require('../models')
-
-
+const {Report, User} = require('../models')
 
 module.exports = {
   async index (req, res) {
@@ -66,5 +64,31 @@ module.exports = {
         error: 'An Error has occured trying to Update the reports.' + err
         })
     }
+  },
+  async showReportee (req, res){
+    try{
+      let reportee = null
+      const UserId = req.user.id
+      currentReport = await Report.findAll({
+        where:{
+          status: "active",
+          UserId: UserId
+        }
+      })
+        reportee = await Report.findAll({
+          where: { month:  currentReport[0].month, year: currentReport[0].year },
+          include:[{
+            model: User,
+             attributes: { exclude: ["password"] },
+             where: {nextLevel: UserId }
+           }]
+        })
+      res.send(reportee)
+    } catch(err){
+      console.log(err)
+      res.status(400).send({
+        error: 'An Error has occured trying to fetch the accomplishments.' + err
+        })
   }
+}
 }

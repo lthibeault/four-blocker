@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Reporter = sequelize.define('Reporter', {
-      person: DataTypes.INTEGER
+      reporter: DataTypes.STRING
     })
     Reporter.associate = function (models) {
       Reporter.belongsTo(models.User)

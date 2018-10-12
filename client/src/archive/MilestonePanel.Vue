@@ -48,10 +48,10 @@
                 class="elevation-1"
               >
                 <template slot="items" slot-scope="props">
-                  <td>{{ props.item.customerName }}</td>
-                  <td class="text-xs">{{ props.item.target }}</td>
-                  <td class="text-xs">{{ props.item.description }}</td>
-                  <td class="text-xs">{{ props.item.userFirst }} {{ props.item.userLast }}</td>
+                  <td>{{ props.item.Customer.name }}</td>
+                  <td class="text-xs">{{ props.item.Block.target }}</td>
+                  <td class="text-xs">{{ props.item.Block.entry }}</td>
+                  <td class="text-xs">{{ props.item.User.first }} {{ props.item.User.last }}</td>
                   <td class="justify layout px-0">
                     <v-icon small color="red" @click="deleteItem(props.item)">delete</v-icon>
                   </td>
@@ -65,6 +65,8 @@
 
 <script>
 import MilestonesService from '@/services/MilestonesService'
+import BlocksService from '@/services/BlocksService'
+
 import CustomersService from '@/services/CustomersService'
 import {mapState} from 'vuex'
 
@@ -109,7 +111,7 @@ export default {
       this.close()
     },
     async initialize () {
-      this.milestones = (await MilestonesService.index()).data
+      this.milestones = (await BlocksService.index(2)).data
       this.customers = (await CustomersService.show('1')).data
     },
     async deleteItem (item) {

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "KPI",
+    "id": 1
+  },
+  {
+    "name": "Milestones",
+    "id": 2
+  },
+  {
+    "name": "Risks",
+    "id": 3
+  },
+  {
+    "name": "Accomplishments",
+    "id": 4
+  }
+]

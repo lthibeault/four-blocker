@@ -22,6 +22,7 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import ReportsService from '@/services/ReportsService'
 
 export default {
   data () {
@@ -45,7 +46,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({name: 'songs'})
+        this.$router.push({name: '/home'})
+        this.reports = (await ReportsService.index()).data
+        this.$store.dispatch('setReport', this.reports[0])
       } catch (error) {
         this.error = error.response.data.error
       }

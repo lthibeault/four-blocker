@@ -9,7 +9,6 @@ module.exports = {
           include:[
             {model: Team},
             {model: Role}
-
         ]
         })
         .map(users => users.toJSON())
@@ -17,12 +16,13 @@ module.exports = {
              {
                first: users.first,
                last: users.last,
+               fullName: users.first + ' ' + users.last,
                roleId: users.Role.id,
                role: users.Role.name,
-               userId: users.id,
+               id: users.id,
                email: users.email,
                nextLevel: users.nextLevel
-             }, users.Team))
+             }, users))
       res.send(users)
     } catch(err){
       console.log(err)
@@ -44,8 +44,15 @@ module.exports = {
   },
   async show (req, res) {
     try{
-      const teams = await Team.findById(req.params.teamId)
-      res.send(teams)
+      const user = await User.findById(req.params.UserId,{
+         attributes: { exclude: ["password"] },
+         include:[
+           {model: Team},
+           {model: Role}
+         ]
+        }
+      )
+      res.send(user)
     } catch(err){
       res.status(400).send({
         error: 'An Error has occured trying to fetch the teams.'
@@ -54,9 +61,9 @@ module.exports = {
   },
   async put (req, res) {
     try {
-      const teams = await Team.update(req.body,{
+      const user = await User.update(req.body,{
       where: {
-        id:req.params.teamId
+        id:req.params.userId
       }
     })
       res.send(req.body)
@@ -65,5 +72,23 @@ module.exports = {
         error: 'An Error has occured trying to Update the teams.'
         })
     }
+  },
+  async showReportee (req, res){
+    try{
+      let reportee = null
+      const UserId = req.user.id
+      reportee = await User.findAll({
+          where: {nextLevel: UserId },
+          attributes: { exclude: ["password"] },
+          include:[{model: Role}]
+        })
+      res.send(reportee)
+    } catch(err){
+      console.log(err)
+      res.status(400).send({
+        error: 'An Error has occured trying to fetch the accomplishments.' + err
+        })
+      }
   }
+
 }

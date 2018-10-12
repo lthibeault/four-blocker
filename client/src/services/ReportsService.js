@@ -9,5 +9,8 @@ export default {
   },
   put (report) {
     return Api().put(`reports/${report.id}`, report)
+  },
+  reportee () {
+    return Api().get('reportee')
   }
 }
